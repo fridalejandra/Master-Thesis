@@ -21,24 +21,23 @@ plt.style.use('ggplot')
 
 # In[2]:
 
-
 ##Read in SIT file to add coordinates
 sit_file = '/Users/fridaperez/Developer/repos/local_repo/SIT_25000/SIT_SH_Filled-316x332.nc'
 data_sit = xr.open_dataset(sit_file)
 lon_t = data_sit.longitude
 lat_t = data_sit.latitude
 
-
 # In[3]:
-
-
 # Read in volume files 
 volume_files = '/Users/fridaperez/Developer/repos/local_repo/Volume_SH_ENV-CY2_2002-2018.nc'
 data = xr.open_dataset(volume_files)
-
+# In[3]:
+sia_file = '/Users/fridaperez/Developer/repos/local_repo/Area_SH_Filled-316x332.nc'
+data_sia = xr.open_dataset(sia_file)
 # In[5]:
 volume = data.volume
 sit = data_sit.SIT
+sia = data_sia.__xarray_dataarray_variable__
 
 # In[6]:
 
@@ -48,43 +47,43 @@ print(dates_vol)
 
 
 # In[7]:
-
-
 time = pd.DataFrame(dates_vol)
-
-
 # In[8]:
 sit_mean = []
 for y in range(len(sit)):
     mean = np.nanmean(sit[y])
     sit_mean.append(mean)
-
-
 # In[9]:
 vol_mean=[]
 for y in range(len(data.volume)):
     mean = np.nanmean(data.volume[y])
     vol_mean.append(mean)
-
+# In[]:
+sia_mean=[]
+for y in range(len(sia)):
+    mean = np.nanmean(sia[y])
+    sia_mean.append(mean)
 # In[10]:
 df_vol = pd.DataFrame(vol_mean)
 df_sit = pd.DataFrame(sit_mean)
-
+df_sia = pd.DataFrame(sia_mean)
 # In[11]:
-df_vol = df_vol.rename({0: "Volume"}, axis='columns')
+df_vol = df_vol.rename({0: "SIV"}, axis='columns')
 df_sit = df_sit.rename({0: "SIT"}, axis='columns')
+df_sia = df_sia.rename({0: "SIA"}, axis='columns')
+
 time = time.rename({0: "Dates"}, axis='columns')
 
 # In[12]:
-frames =[time,df_vol,df_sit]
+frames =[time,df_vol,df_sit, df_sia]
 table = pd.concat(frames,axis=1)
 table = table.set_index(table['Dates'])
 
 # In[13]:
 #fig, ax = plt.subplots()
 #plt.style.use("dark_background")
-ax = table.assign(year=table.index.year).boxplot(column='Volume', by='year', figsize=(12, 6))
-ax.set_ylabel('Volume (km\u00b3)')
+ax = table.assign(year=table.index.year).boxplot(column='SIV', by='year', figsize=(12, 6))
+ax.set_ylabel('SIV (km\u00b3)')
 plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/Volbox_year_light.png', dpi=300)
 
 
@@ -99,19 +98,22 @@ plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SITbox_year_
 # In[15]:
 #fig, ax = plt.subplots()
 #plt.style.use("dark_background")
-ax = table.assign(month=table.index.month).boxplot(column='Volume', by='month', figsize=(12, 6))
-ax.set_ylabel('Volume (km\u00b3)')
+# ax = table.assign(month=table.index.month).boxplot(column='Volume', by='month', figsize=(12, 6))
+# ax.set_ylabel('Volume (km\u00b3)')
 #plt.savefig('/Users/fridaperez/Desktop/Volbox_month_dark.png', dpi=300)
 
 # In[16]:
 #fig, ax = plt.subplots()
 #plt.style.use("dark_background")
-ax = table.assign(month=table.index.month).boxplot(column='SIT', by='month', figsize=(12, 6))
-ax.set_ylabel('SIT (m)')
+# ax = table.assign(month=table.index.month).boxplot(column='SIT', by='month', figsize=(12, 6))
+# ax.set_ylabel('SIT (m)')
 #plt.savefig('/Users/fridaperez/Desktop/SITbox_month_dark.png', dpi=300)
 
 # In[ ]:
-
-
+#fig, ax = plt.subplots()
+#plt.style.use("dark_background")
+ax = table.assign(year=table.index.year).boxplot(column='SIA', by='year', figsize=(12, 6))
+ax.set_ylabel('SIA (km\u00b2)')
+plt.savefig('/Users/fridaperez/Desktop/SIAbox_month_dark.png', dpi=300)
 
 
