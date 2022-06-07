@@ -229,15 +229,10 @@ table_yr = pd.concat(frames_yr,axis=1) #axis 1,refers to the join being in colum
 
 
 # In[ ]:
-
-
 table_yr['year'] = pd.DatetimeIndex(table_yr['Dates']).year
-
-
 # ## Next we will output the tables as csv's to combine with the other regions
 table_month.to_csv('/Users/fridaperez/Developer/repos/local_repo/vol_regions_files/Weddell_02-18_months.csv')
 table_yr.to_csv('/Users/fridaperez/Developer/repos/local_repo/vol_regions_files/Weddell_02-18_years.csv')
-
 
 # In[ ]:
 

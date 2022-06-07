@@ -85,7 +85,7 @@ table = table.set_index(table['Dates'])
 #plt.style.use("dark_background")
 ax = table.assign(year=table.index.year).boxplot(column='Volume', by='year', figsize=(12, 6))
 ax.set_ylabel('Volume (km\u00b3)')
-#plt.savefig('/Users/fridaperez/Desktop/Volbox_year_light.png', dpi=300)
+plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/Volbox_year_light.png', dpi=300)
 
 
 # In[14]:
@@ -93,7 +93,7 @@ ax.set_ylabel('Volume (km\u00b3)')
 #plt.style.use("dark_background")
 ax = table.assign(year=table.index.year).boxplot(column='SIT', by='year', figsize=(12, 6))
 ax.set_ylabel('SIT (m)')
-#plt.savefig('/Users/fridaperez/Desktop/SITbox_year_light.png', dpi=300)
+plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SITbox_year_light.png', dpi=300)
 
 
 # In[15]:
