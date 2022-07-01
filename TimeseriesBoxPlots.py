@@ -84,7 +84,7 @@ table = table.set_index(table['Dates'])
 #plt.style.use("dark_background")
 ax = table.assign(year=table.index.year).boxplot(column='SIV', by='year', figsize=(12, 6))
 ax.set_ylabel('SIV (km\u00b3)')
-plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/Volbox_year_light.png', dpi=300)
+#plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/Volbox_year_light.png', dpi=300)
 
 
 # In[14]:
@@ -92,7 +92,7 @@ plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/Volbox_year_
 #plt.style.use("dark_background")
 ax = table.assign(year=table.index.year).boxplot(column='SIT', by='year', figsize=(12, 6))
 ax.set_ylabel('SIT (m)')
-plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SITbox_year_light.png', dpi=300)
+#plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SITbox_year_light.png', dpi=300)
 
 
 # In[15]:
@@ -114,6 +114,6 @@ plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SITbox_year_
 #plt.style.use("dark_background")
 ax = table.assign(year=table.index.year).boxplot(column='SIA', by='year', figsize=(12, 6))
 ax.set_ylabel('SIA (km\u00b2)')
-plt.savefig('/Users/fridaperez/Desktop/SIAbox_month_dark.png', dpi=300)
+#plt.savefig('/Users/fridaperez/Desktop/SIAbox_month_dark.png', dpi=300)
 
 

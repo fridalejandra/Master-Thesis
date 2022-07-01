@@ -76,7 +76,7 @@ import matplotlib.pyplot as plt # Impot the relevant module
 fig, ax = plt.subplots() # Create the figure and axes object
 # Plot the first x and y axes:
 ax=table.plot(x = 'Dates', y = 'SIV', ax = ax, label='Sea Ice Volume', color="steelblue")
-ax.set_ylabel('Sea Ice Volume (km3)')
+ax.set_ylabel('SIV (km$a^{3}$)')
 ax.set_title('Annual Sea Ice Volume 2002-2018')
 ax.get_legend().remove()
 #plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/annualcycle_vol.pdf')
@@ -95,7 +95,7 @@ titless = ["2002", "2003", "2004", "2005", "2006", "2007","2008","2009","2010","
            "2015","2016","2017","2018"]
 for ax, title in zip(fg.axes.flat, titless):
     ax.set_title(title)
-fg.fig.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/white_ExtendedVol_yearlyHorizontal.png')
+#fg.fig.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/white_ExtendedVol_yearlyHorizontal.png')
 
 
 # In[20]:
@@ -112,7 +112,7 @@ f = monthly_means.volume.plot(col="month", col_wrap=3,cmap=cmocean.cm.ice, vmin=
 titles = ["May", "June", "July", "August", "September", "October"]
 for ax, title in zip(f.axes.flat, titles):
     ax.set_title(title)
-f.fig.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/white_ExtendedVol_monthly.png')
+#f.fig.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/white_ExtendedVol_monthly.png')
 #levels=[0,500,1000,1500,2000,2500,3000,3200]
 
 # In[22]
@@ -129,10 +129,10 @@ table['month'] = table['month'].apply(lambda x:calendar.month_abbr[x])
 
 import seaborn as sns
 sns.relplot(data=table, x="year", y="SIV", hue="month", kind="line")
-#plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SIV_month_linegraph.png')
+plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SIV_month_linegraph.png', dpi=300)
 
 # In[]
-sns.relplot(data=table, x="month", y="SIV", hue="year", kind="line", palette="Set2")
-#plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SIV_year_linegraph.png')
+sns.relplot(data=table, x="month", y="SIV", hue="year", kind="line", palette="Paired")
+plt.savefig('/Users/fridaperez/Developer/repos/local_repo/pub_plots/SIV_year_linegraph.png',dpi=300)
 
 #%%
